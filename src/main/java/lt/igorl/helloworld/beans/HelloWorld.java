@@ -4,11 +4,22 @@ import lt.igorl.helloworld.interfaces.Message;
 
 public class HelloWorld implements Message {
 
+    private String message;
+
     public HelloWorld() {
-        System.out.println("HalloWorld empty constructor was called");
+
     }
 
     public String getCustomMessage() {
-        return "Hello World!";
+
+        return "Interface was called";
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
