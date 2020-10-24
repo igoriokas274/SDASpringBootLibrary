@@ -1,6 +1,6 @@
-package lt.igorl.halloworld.app;
+package lt.igorl.helloworld.app;
 
-import lt.igorl.halloworld.interfaces.Message;
+import lt.igorl.helloworld.interfaces.Message;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class appXml {
@@ -9,7 +9,7 @@ public class appXml {
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        Message message = context.getBean("halloWorld", Message.class);
+        Message message = context.getBean("helloWorld", Message.class);
 
         System.out.println(message.getCustomMessage());
 

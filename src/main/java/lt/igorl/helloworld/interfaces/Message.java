@@ -1,4 +1,4 @@
-package lt.igorl.halloworld.interfaces;
+package lt.igorl.helloworld.interfaces;
 
 public interface Message {
 

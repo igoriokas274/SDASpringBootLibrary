@@ -1,10 +1,10 @@
-package lt.igorl.halloworld.beans;
+package lt.igorl.helloworld.beans;
 
-import lt.igorl.halloworld.interfaces.Message;
+import lt.igorl.helloworld.interfaces.Message;
 
-public class HalloWorld implements Message {
+public class HelloWorld implements Message {
 
-    public HalloWorld() {
+    public HelloWorld() {
         System.out.println("HalloWorld empty constructor was called");
     }
 

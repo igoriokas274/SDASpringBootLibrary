@@ -8,8 +8,8 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- add entry to enable component scanning -->
-    <context:component-scan base-package="lt.igorl.halloworld.beans"/>
-    <bean id="halloWorld" class="lt.igorl.halloworld.beans.HalloWorld"></bean>
+    <context:component-scan base-package="lt.igorl.helloworld.beans"/>
+    <bean id="helloWorld" class="lt.igorl.helloworld.beans.HelloWorld"/>
 
 
 </beans>
