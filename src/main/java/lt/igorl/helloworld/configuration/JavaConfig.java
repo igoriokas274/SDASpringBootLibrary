@@ -11,9 +11,13 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:message.properties")
 public class JavaConfig {
 
-    @Bean
+    //
+    // Code block disabled for automatic config solution
+    //
+
+/*    @Bean
     public HelloWorld helloWorld() {
         return new HelloWorld();
-    }
+    }*/
 
 }
