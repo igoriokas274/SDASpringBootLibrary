@@ -1,6 +1,7 @@
 package dev.sda.library.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +13,17 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
+    @NotBlank(message = "required field")
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(
+            name = "author_book",
+            joinColumns = @JoinColumn(name = "authorId"),
+            inverseJoinColumns = @JoinColumn(name = "bookId")
+    )
     private List<Book> books;
 
     public Author() {
@@ -59,12 +66,11 @@ public class Author {
         this.books = book;
     }
 
-    public void add(Book book) {
+    public void addBook(Book theBook) {
         if (books == null) {
             books = new ArrayList<>();
         }
-        books.add(book);
-        book.setAuthor(this);
+        books.add(theBook);
     }
 
     @Override

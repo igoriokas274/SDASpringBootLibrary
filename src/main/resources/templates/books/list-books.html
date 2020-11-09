@@ -16,13 +16,10 @@
 </head>
 <body>
 <div class="container">
-    <h3>Books</h3>
+    <h3><a th:href="@{/authors/list}">Authors</a> | Books</h3>
     <hr>
     <a th:href="@{/books/showFormForAddBook}" class="btn btn-primary btn-sm mb-3">
-        Add Book
-    </a>
-    <a th:href="@{/authors/list}" class="btn btn-primary btn-sm mb-3">
-        All Authors
+        Add New
     </a>
     <table class="table table-border table-striped">
         <thead class="thead-dark">
@@ -37,7 +34,7 @@
 
             <td>
                 <a th:href="@{/books/showFormForUpdateBook(bookId=${tempBook.id})}"
-                   class="btn btn-info btn-sm">Update</a>
+                   class="btn btn-info btn-sm" >Update</a>
                 <a th:href="@{/books/deleteBook(bookId=${tempBook.id})}"
                    class="btn btn-danger btn-sm"
                    onclick="if (! (confirm('Are you sure you want to delete this book?'))) return false">Delete</a>

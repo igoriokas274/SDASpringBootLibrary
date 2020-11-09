@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="container">
-    <h3>Authors</h3>
+    <h3>Authors | <a th:href="@{/books/list}">Books</a></h3>
     <hr>
     <p class="h4 mb-4">Save Author</p>
     <form action="#" th:action="@{/authors/saveAuthor}"
@@ -26,10 +26,13 @@
 
         <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4" placeholder="First Name">
         <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4" placeholder="Last Name">
-        <button type="submit" class="btn btn-info col-2">Save</button>
+        <button type="submit" class="btn btn-info col-2" data-toggle="tooltip">Save</button>
+        <a th:href="@{/authors/list}" class="btn btn-danger col-2">
+            Cancel
+        </a>
     </form>
     <hr>
-    <a th:href="@{/authors/list}">Back to Authors List</a>
+    <!--<a th:href="@{/authors/list}">Return to Authors List</a>-->
 </div>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package dev.sda.library.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -10,11 +12,16 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
+    @NotBlank(message = "required field")
     @Column(name = "title")
     private String title;
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "author_id")
-    private Author author;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(
+            name = "author_book",
+            joinColumns = @JoinColumn(name = "bookId"),
+            inverseJoinColumns = @JoinColumn(name = "authorId")
+    )
+    private List<Author> authors;
 
     public Book() {
     }
@@ -39,12 +46,12 @@ public class Book {
         this.title = title;
     }
 
-    public Author getAuthor() {
-        return author;
+    public List<Author> getAuthors() {
+        return authors;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthors(List<Author> author) {
+        this.authors = author;
     }
 
     @Override
@@ -52,7 +59,7 @@ public class Book {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", author=" + author +
+                ", author=" + authors +
                 '}';
     }
 }
