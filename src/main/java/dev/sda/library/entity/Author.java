@@ -17,8 +17,12 @@ public class Author {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authors",
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "author_book",
+            joinColumns = @JoinColumn(name = "author_Id"),
+            inverseJoinColumns = @JoinColumn(name = "book_Id")
+    )
     private List<Book> books;
 
     public Author() {

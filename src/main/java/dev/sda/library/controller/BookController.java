@@ -1,7 +1,5 @@
 package dev.sda.library.controller;
 
-import dev.sda.library.dao.AuthorRepository;
-import dev.sda.library.dao.BookRepository;
 import dev.sda.library.entity.Author;
 import dev.sda.library.entity.Book;
 import dev.sda.library.service.AuthorService;
@@ -53,9 +51,9 @@ public class BookController {
     @GetMapping("/showFormForUpdateBook")
     public String showFormForUpdateBook(@RequestParam("bookId") int theId, Model theModel) {
 
-        Book theBook = bookService.findById(theId); // always was here
+        Book theBook = bookService.findById(theId);
+        theModel.addAttribute("book", theBook);
         List<Author> theAuthor = authorService.findAll();
-        theModel.addAttribute("book", theBook); // always was here
         theModel.addAttribute("author", theAuthor);
 
         return "books/book-form";
