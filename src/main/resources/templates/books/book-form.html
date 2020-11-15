@@ -22,7 +22,12 @@
     <form action="#" th:action="@{/books/saveBook}"
           th:object="${book}" method="post">
 
-        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{id}"> <!--hidden by default-->
+
+        <label for="author">Author</label>
+        <select class="form-control mb-4 col-4" id="author" th:field="*{authors}" >
+            <option th:each="author : ${author}" th:text="${author.firstName + ' ' + author.lastName}" th:value="${author.id}"></option>
+        </select>
 
         <input type="text" th:field="*{title}" class="form-control mb-4 col-4" placeholder="Book Title">
         <button type="submit" class="btn btn-info col-2">Save</button>
@@ -31,7 +36,6 @@
         </a>
     </form>
     <hr>
-   <!-- <a th:href="@{/books/list}">Return to Book List</a>-->
 </div>
 </body>
 </html>

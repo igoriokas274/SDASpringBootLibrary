@@ -19,28 +19,31 @@
     <h3>Authors | <a th:href="@{/books/list}">Books</a></h3>
     <hr>
     <a th:href="@{/authors/showFormForAddAuthor}" class="btn btn-primary btn-sm mb-3">
-        Add New
+        Add New Author
     </a>
     <table class="table table-border table-striped">
         <thead class="thead-dark">
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Action</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="tempAuthor : ${authors}">
-            <td th:text="${tempAuthor.firstName}" />
-            <td th:text="${tempAuthor.lastName}" />
+            <td th:text="${tempAuthor.firstName}"></td>
+            <td th:text="${tempAuthor.lastName}"></td>
 
             <td>
-
+                <a th:href="@{/books/showBooksByAuthor(authorId=${tempAuthor.id})}"
+                   class="btn btn-info btn-sm">List Books</a>
+                <a th:href="@{/books/addBookToAuthor(authorId=${tempAuthor.id})}"
+                   class="btn btn-info btn-sm">Add Book</a>
                 <a th:href="@{/authors/showFormForUpdateAuthor(authorId=${tempAuthor.id})}"
-                   class="btn btn-info btn-sm">Update</a>
+                   class="btn btn-info btn-sm">Update Author</a>
                 <a th:href="@{/authors/deleteAuthor(authorId=${tempAuthor.id})}"
                    class="btn btn-danger btn-sm"
-                   onclick="if (! (confirm('Are you sure you want to delete this author?'))) return false">Delete</a>
+                   onclick="if (! (confirm('Are you sure you want to delete this author?'))) return false">Delete Author</a>
             </td>
 
         </tr>

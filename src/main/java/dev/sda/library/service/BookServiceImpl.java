@@ -1,5 +1,6 @@
 package dev.sda.library.service;
 
+import dev.sda.library.dao.AuthorRepository;
 import dev.sda.library.dao.BookRepository;
 import dev.sda.library.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ public class BookServiceImpl implements BookService {
 
     private BookRepository bookRepository;
 
+    private AuthorRepository authorRepository;
+
     @Autowired
-    public BookServiceImpl (BookRepository theBookRepository) {
+    public BookServiceImpl (BookRepository theBookRepository, AuthorRepository theAuthorRepository) {
         bookRepository = theBookRepository;
+        authorRepository = theAuthorRepository;
     }
 
     @Override

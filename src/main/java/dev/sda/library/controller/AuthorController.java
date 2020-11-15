@@ -2,6 +2,8 @@ package dev.sda.library.controller;
 
 import dev.sda.library.entity.Author;
 import dev.sda.library.service.AuthorService;
+import dev.sda.library.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +16,12 @@ public class AuthorController {
 
     private AuthorService authorService;
 
-    public AuthorController(AuthorService theAuthorService) {
+    private BookService bookService;
+
+    @Autowired
+    public AuthorController(AuthorService theAuthorService, BookService theBookService) {
         authorService = theAuthorService;
+        bookService = theBookService;
     }
 
     @GetMapping("/list")

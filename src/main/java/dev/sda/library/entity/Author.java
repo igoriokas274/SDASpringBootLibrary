@@ -2,7 +2,6 @@ package dev.sda.library.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,12 +17,8 @@ public class Author {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(
-            name = "author_book",
-            joinColumns = @JoinColumn(name = "authorId"),
-            inverseJoinColumns = @JoinColumn(name = "bookId")
-    )
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authors",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Book> books;
 
     public Author() {
@@ -64,13 +59,6 @@ public class Author {
 
     public void setBooks(List<Book> book) {
         this.books = book;
-    }
-
-    public void addBook(Book theBook) {
-        if (books == null) {
-            books = new ArrayList<>();
-        }
-        books.add(theBook);
     }
 
     @Override
