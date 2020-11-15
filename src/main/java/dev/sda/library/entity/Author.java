@@ -20,8 +20,8 @@ public class Author {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "author_book",
-            joinColumns = @JoinColumn(name = "author_Id"),
-            inverseJoinColumns = @JoinColumn(name = "book_Id")
+            joinColumns = {@JoinColumn(name = "author_Id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "book_Id", referencedColumnName = "id")}
     )
     private List<Book> books;
 
