@@ -6,8 +6,8 @@ import dev.sda.library.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -23,7 +23,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findAll() {
+    public Set<Book> findAll() {
         return bookRepository.findAllByOrderByTitleAsc();
     }
 

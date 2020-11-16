@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/books")
@@ -29,8 +29,8 @@ public class BookController {
     @GetMapping("/list")
     public String listBooks(Model theModel) {
 
-        List<Book> theBook = bookService.findAll();
-        List<Author> theAuthor = authorService.findAll();
+        Set<Book> theBook = bookService.findAll();
+        Set<Author> theAuthor = authorService.findAll();
         theModel.addAttribute("books", theBook);
         theModel.addAttribute("author", theAuthor);
         return "books/list-books";
@@ -42,7 +42,7 @@ public class BookController {
         Book theBook = new Book();
 
         theModel.addAttribute("book", theBook);
-        List<Author> theAuthor = authorService.findAll();
+        Set<Author> theAuthor = authorService.findAll();
         theModel.addAttribute("author", theAuthor);
 
         return "books/book-form";
@@ -53,7 +53,7 @@ public class BookController {
 
         Book theBook = bookService.findById(theId);
         theModel.addAttribute("book", theBook);
-        List<Author> theAuthor = authorService.findAll();
+        Set<Author> theAuthor = authorService.findAll();
         theModel.addAttribute("author", theAuthor);
 
         return "books/book-form";
@@ -78,7 +78,7 @@ public class BookController {
     public String showBooksByAuthor(@RequestParam("authorId") int authorId, Model theModel) {
 
         Author theAuthor = authorService.findById(authorId);
-        List<Book> theBooks = theAuthor.getBooks();
+        Set<Book> theBooks = theAuthor.getBooks();
         theModel.addAttribute("author", theAuthor);
         theModel.addAttribute("books", theBooks);
 

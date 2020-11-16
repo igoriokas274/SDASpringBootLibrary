@@ -2,11 +2,11 @@ package dev.sda.library.service;
 
 import dev.sda.library.entity.Author;
 
-import java.util.List;
+import java.util.Set;
 
 public interface AuthorService {
 
-    public List<Author> findAll();
+    public Set<Author> findAll();
 
     public Author findById(long authorId);
 

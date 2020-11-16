@@ -2,11 +2,11 @@ package dev.sda.library.service;
 
 import dev.sda.library.entity.Book;
 
-import java.util.List;
+import java.util.Set;
 
 public interface BookService {
 
-    public List<Book> findAll();
+    public Set<Book> findAll();
 
     public Book findById(long bookId);
 

@@ -2,7 +2,8 @@ package dev.sda.library.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
@@ -15,13 +16,13 @@ public class Book {
     @NotBlank(message = "required field")
     @Column(name = "title")
     private String title;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}) // cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
     @JoinTable(
             name = "author_book",
-            joinColumns = {@JoinColumn(name = "book_Id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "author_Id", referencedColumnName = "id")}
+            joinColumns = @JoinColumn(name = "book_Id"),
+            inverseJoinColumns = @JoinColumn(name = "author_Id")
     )
-    private List<Author> authors;
+    private Set<Author> authors = new HashSet<>();
 
     public Book() {
     }
@@ -46,11 +47,11 @@ public class Book {
         this.title = title;
     }
 
-    public List<Author> getAuthors() {
+    public Set<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<Author> author) {
+    public void setAuthors(Set<Author> author) {
         this.authors = author;
     }
 

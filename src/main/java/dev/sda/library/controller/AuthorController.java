@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/authors")
@@ -27,7 +27,7 @@ public class AuthorController {
     @GetMapping("/list")
     public String listAuthors(Model theModel) {
 
-        List<Author> theAuthors = authorService.findAll();
+        Set<Author> theAuthors = authorService.findAll();
 
         theModel.addAttribute("authors", theAuthors);
 

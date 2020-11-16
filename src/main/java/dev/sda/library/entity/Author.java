@@ -2,7 +2,8 @@ package dev.sda.library.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "author")
@@ -17,13 +18,8 @@ public class Author {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "author_book",
-            joinColumns = {@JoinColumn(name = "author_Id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "book_Id", referencedColumnName = "id")}
-    )
-    private List<Book> books;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authors", cascade = CascadeType.ALL)
+    private Set<Book> books = new HashSet<>();
 
     public Author() {
     }
@@ -31,6 +27,10 @@ public class Author {
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Author(String firstName) {
+        this.firstName = firstName;
     }
 
     public long getId() {
@@ -57,11 +57,11 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public List<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> book) {
+    public void setBooks(Set<Book> book) {
         this.books = book;
     }
 

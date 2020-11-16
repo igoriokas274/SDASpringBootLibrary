@@ -6,8 +6,8 @@ import dev.sda.library.entity.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -23,7 +23,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public List<Author> findAll() {
+    public Set<Author> findAll() {
         return authorRepository.findAllByOrderByLastNameAsc();
     }
 
